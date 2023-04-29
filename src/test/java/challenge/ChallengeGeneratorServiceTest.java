@@ -1,4 +1,4 @@
-package microservices.book.multiplication.challenge;
+package challenge;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
 
