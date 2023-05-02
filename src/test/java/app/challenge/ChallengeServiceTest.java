@@ -1,4 +1,4 @@
-package challenge;
+package app.challenge;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
