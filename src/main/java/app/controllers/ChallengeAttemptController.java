@@ -1,5 +1,7 @@
 package app.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,7 @@ public class ChallengeAttemptController {
 	private final ChallengeService challengeService;
 
 	@PostMapping
-	ResponseEntity<ChallengeAttempt> postResult(@RequestBody ChallengeAttemptDTO challengeAttemptDTO) {
+	ResponseEntity<ChallengeAttempt> postResult(@RequestBody @Valid ChallengeAttemptDTO challengeAttemptDTO) {
 		return ResponseEntity.ok(challengeService.verifyAttempt(challengeAttemptDTO));
 	}
 }
