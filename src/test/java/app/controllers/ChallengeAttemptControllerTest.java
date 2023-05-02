@@ -1,4 +1,4 @@
-package challenge;
+package app.controllers;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.ArgumentMatchers.eq;
@@ -7,6 +7,8 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import app.challenge.Challenge;
+import app.microservice.Microservices;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,7 @@ import app.challenge.ChallengeService;
 import app.controllers.ChallengeAttemptController;
 import app.user.User;
 
-@SpringBootTest(classes = ChallengeAttemptController.class)
-@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = Microservices.class)
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
