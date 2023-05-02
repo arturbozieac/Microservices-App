@@ -1,4 +1,4 @@
-package app.challenge;
+package app.services;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
 
@@ -10,9 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import app.challenge.Challenge;
-import app.challenge.ChallengeGeneratorService;
-import app.challenge.ChallengeGeneratorServiceImpl;
+import app.model.challenge.Challenge;
+import app.services.interfaces.ChallengeGeneratorService;
 
 @ExtendWith(MockitoExtension.class)
 public class ChallengeGeneratorServiceTest {

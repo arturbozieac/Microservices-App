@@ -1,4 +1,7 @@
-package app.challenge;
+package app.services.interfaces;
+
+import app.model.challenge.ChallengeAttempt;
+import app.model.challenge.dto.ChallengeAttemptDTO;
 
 public interface ChallengeService {
 

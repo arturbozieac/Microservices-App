@@ -1,4 +1,6 @@
-package app.challenge;
+package app.services.interfaces;
+
+import app.model.challenge.Challenge;
 
 public interface ChallengeGeneratorService {
 	/**

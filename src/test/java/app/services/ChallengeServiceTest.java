@@ -1,14 +1,13 @@
-package app.challenge;
+package app.services;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import app.challenge.ChallengeAttempt;
-import app.challenge.ChallengeAttemptDTO;
-import app.challenge.ChallengeService;
-import app.challenge.ChallengeServiceImpl;
+import app.model.challenge.ChallengeAttempt;
+import app.model.challenge.dto.ChallengeAttemptDTO;
+import app.services.interfaces.ChallengeService;
 
 class ChallengeServiceTest {
 

@@ -7,30 +7,30 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import app.challenge.Challenge;
-import app.microservice.Microservices;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import app.challenge.ChallengeAttempt;
-import app.challenge.ChallengeAttemptDTO;
-import app.challenge.ChallengeService;
-import app.controllers.ChallengeAttemptController;
-import app.user.User;
+import app.Microservices;
+import app.model.challenge.ChallengeAttempt;
+import app.model.challenge.dto.ChallengeAttemptDTO;
+import app.model.user.User;
+import app.services.interfaces.ChallengeService;
 
+/**
+ * Challenge attempts controller tests.
+ * 
+ * @author Artur
+ *
+ */
 @SpringBootTest(classes = Microservices.class)
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
@@ -48,6 +48,11 @@ class ChallengeAttemptControllerTest {
 	@Autowired
 	private JacksonTester<ChallengeAttempt> jsonResultAttempt;
 
+	/**
+	 * Test valid challenge attempt.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	void postValidResult() throws Exception {
 		// given
@@ -63,14 +68,17 @@ class ChallengeAttemptControllerTest {
 		then(response.getResponse().getContentAsString()).isEqualTo(jsonResultAttempt.write(expectedResponse).getJson());
 	}
 
+	/**
+	 * Test invalid challenge attempt.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	void postInvalidResult() throws Exception {
 		// given an attempt with invalid input data
 		ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(2000, -70, "john", 1);
 		// when
-		MockHttpServletResponse response = mvc.perform(post("/attempts").contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(jsonRequestAttempt.write(attemptDTO).getJson())).andReturn().getResponse();
-		//then
-		then(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+		mvc.perform(post("/attempts").contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(jsonRequestAttempt.write(attemptDTO).getJson())).andExpect(status().isBadRequest()).andReturn();
 	}
 }

@@ -1,6 +1,6 @@
-package app.challenge;
+package app.model.challenge;
 
-import app.user.User;
+import app.model.user.User;
 import lombok.*;
 
 /**

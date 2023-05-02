@@ -1,8 +1,11 @@
-package app.challenge;
+package app.services;
 
 import org.springframework.stereotype.Service;
 
-import app.user.User;
+import app.model.challenge.ChallengeAttempt;
+import app.model.challenge.dto.ChallengeAttemptDTO;
+import app.model.user.User;
+import app.services.interfaces.ChallengeService;
 
 @Service
 public class ChallengeServiceImpl implements ChallengeService {

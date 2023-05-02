@@ -1,8 +1,11 @@
-package app.challenge;
+package app.services;
 
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
+
+import app.model.challenge.Challenge;
+import app.services.interfaces.ChallengeGeneratorService;
 
 @Service
 public class ChallengeGeneratorServiceImpl implements ChallengeGeneratorService {

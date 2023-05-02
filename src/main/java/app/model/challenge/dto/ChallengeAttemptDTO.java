@@ -1,4 +1,4 @@
-package app.challenge;
+package app.model.challenge.dto;
 
 import lombok.Value;
 

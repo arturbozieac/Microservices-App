@@ -1,4 +1,4 @@
-package app.user;
+package app.model.challenge;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * Stores information to identify the user.
- */
+* This class represents a Challenge to solve a Multiplication (a * b).
+*/
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class User {
-	private Long id;
-	private String alias;
+public class Challenge {
+	private int factorA;
+	private int factorB;
 }

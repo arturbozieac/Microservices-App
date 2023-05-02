@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.challenge.Challenge;
-import app.challenge.ChallengeGeneratorService;
+import app.model.challenge.Challenge;
+import app.services.interfaces.ChallengeGeneratorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
