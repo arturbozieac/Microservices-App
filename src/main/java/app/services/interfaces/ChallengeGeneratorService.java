@@ -2,9 +2,16 @@ package app.services.interfaces;
 
 import app.model.challenge.Challenge;
 
+/**
+ * Challenge Generator
+ * 
+ * @author Artur
+ *
+ */
 public interface ChallengeGeneratorService {
+	
 	/**
-	 * @return a randomly-generated challenge with factors between 11 and 99
+	 * @return a randomly-generated challenge.
 	 */
 	Challenge randomChallenge();
 }

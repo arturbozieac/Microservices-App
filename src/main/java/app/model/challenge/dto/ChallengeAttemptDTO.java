@@ -7,7 +7,24 @@ import lombok.Value;
  */
 @Value
 public class ChallengeAttemptDTO {
-	int factorA, factorB;
+	
+	/**
+	 * First multiplication factor
+	 */
+	int factorA;
+	
+	/**
+	 * Second multiplication factor
+	 */
+	int factorB;
+	
+	/**
+	 * User name.
+	 */
 	String userAlias;
+	
+	/**
+	 * User's answer.
+	 */
 	int guess;
 }

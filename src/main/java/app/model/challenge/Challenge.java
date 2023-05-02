@@ -1,18 +1,21 @@
 package app.model.challenge;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
 * This class represents a Challenge to solve a Multiplication (a * b).
 */
-@Getter
-@ToString
-@EqualsAndHashCode
+@Data
 @AllArgsConstructor
 public class Challenge {
+	/**
+	 * First multiplication factor
+	 */
 	private int factorA;
+	
+	/**
+	 * Second multiplication factor
+	 */
 	private int factorB;
 }

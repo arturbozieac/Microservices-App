@@ -18,6 +18,9 @@ class ChallengeServiceTest {
 		challengeService = new ChallengeServiceImpl();
 	}
 
+	/**
+	 * Test validity of a correct answer for a challenge attempt.
+	 */
 	@Test
 	public void checkCorrectAttemptTest() {
 		// given
@@ -28,6 +31,9 @@ class ChallengeServiceTest {
 		then(resultAttempt.isCorrect()).isTrue();
 	}
 
+	/**
+	 * Test validity of a wrong answer for a challenge attempt.
+	 */
 	@Test
 	public void checkWrongAttemptTest() {
 		// given

@@ -26,6 +26,9 @@ public class ChallengeGeneratorServiceTest {
 		challengeGeneratorService = new ChallengeGeneratorServiceImpl(random);
 	}
 
+	/**
+	 * Test random generator limits.
+	 */
 	@Test
 	public void generateRandomFactorIsBetweenExpectedLimits() {
 		// 89 is max - min range
