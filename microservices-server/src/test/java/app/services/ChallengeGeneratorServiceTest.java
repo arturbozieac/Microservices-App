@@ -1,13 +1,15 @@
 package app.services;
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.withSettings;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import app.model.challenge.Challenge;
@@ -17,9 +19,7 @@ import app.services.interfaces.ChallengeGeneratorService;
 public class ChallengeGeneratorServiceTest {
 	
 	private ChallengeGeneratorService challengeGeneratorService;
-	
-	@Spy
-	private Random random;
+	private Random random = mock(SecureRandom.class, withSettings().withoutAnnotations());
 
 	@BeforeEach
 	public void setUp() {
