@@ -17,8 +17,8 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>microservices-server</module>
-        <module>microservices-frontend</module>
+        <module>challenges-server</module>
+        <module>challenges-frontend</module>
     </modules>
 
     <properties>

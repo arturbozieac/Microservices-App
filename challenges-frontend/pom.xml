@@ -7,6 +7,6 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>microservices-frontend</artifactId>
+	<artifactId>challenges-frontend</artifactId>
     
 </project>

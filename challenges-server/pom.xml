@@ -7,8 +7,8 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>microservices-server</artifactId>
-	<name>microservices-server</name>
+	<artifactId>challenges-server</artifactId>
+	<name>challenges-server</name>
 	<description>demo project for microservices with Spring Boot</description>
 	
 	<properties>
