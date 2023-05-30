@@ -17,14 +17,12 @@ public class ChallengeAttempt {
 	 * User executing the challenge.
 	 */
 	private User user;
+
 	/**
-	 * First multiplication factor.
+	 * Attempted challenge.
 	 */
-	private int factorA;
-	/**
-	 * Second multiplication factor.
-	 */
-	private int factorB;
+	private Challenge challenge;
+	
 	/**
 	 * Attempt result
 	 */
