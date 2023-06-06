@@ -1,7 +1,6 @@
 package app.controllers;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -69,7 +68,7 @@ class ChallengeAttemptControllerTest {
 		long attemptId = 5L;
 		ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 70, "john", 3500);
 		ChallengeAttempt expectedResponse = new ChallengeAttempt(attemptId, user, attemptDTO.getFactorA(), attemptDTO.getFactorB(), 3500, true);
-		given(challengeService.verifyAttempt(eq(attemptDTO))).willReturn(expectedResponse);
+		given(challengeService.verifyAttempt(attemptDTO)).willReturn(expectedResponse);
 		// when
 		MvcResult response = mvc.perform(post("/attempts").contentType(MediaType.APPLICATION_JSON_VALUE)
 				.content(jsonRequestAttempt.write(attemptDTO).getJson())).andExpect(status().isOk()).andReturn();
@@ -97,7 +96,7 @@ class ChallengeAttemptControllerTest {
    * @throws Exception
    */
 	@Test
-  public void getUserStats() throws Exception {
+  void getUserStats() throws Exception {
       // given
       User user = User.builder().alias("john_doe").build();
       ChallengeAttempt attempt1 = new ChallengeAttempt(1L, user, 50, 70, 3500, true);

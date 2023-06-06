@@ -6,14 +6,12 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
 import org.mockito.ArgumentMatchers;
@@ -47,7 +45,7 @@ class ChallengeServiceTest {
 	 * Test validity of a correct answer for a challenge attempt.
 	 */
 	@Test
-	public void checkCorrectAttemptTest() {
+	void checkCorrectAttemptTest() {
 	  given(attemptRepository.save(ArgumentMatchers.any())).will(AdditionalAnswers.returnsFirstArg());
 	  
 		// given
@@ -66,7 +64,7 @@ class ChallengeServiceTest {
 	 * Test validity of a wrong answer for a challenge attempt.
 	 */
 	@Test
-	public void checkWrongAttemptTest() {
+	void checkWrongAttemptTest() {
 	  given(attemptRepository.save(ArgumentMatchers.any())).will(AdditionalAnswers.returnsFirstArg());
 		// given
 		ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, "john_doe", 5000);
@@ -77,7 +75,7 @@ class ChallengeServiceTest {
 	}
 	
   @Test
-  public void checkExistingUserTest() {
+  void checkExistingUserTest() {
     given(attemptRepository.save(ArgumentMatchers.any())).will(AdditionalAnswers.returnsFirstArg());
     // given
     User existingUser = User.builder().alias("john_doe").build();
@@ -96,7 +94,7 @@ class ChallengeServiceTest {
    * Test validity of a correct answer for a challenge attempt.
    */
   @Test
-  public void retrieveStatsTest() {
+  void retrieveStatsTest() {
       // given
       User user = User.builder().alias("john_doe").build();
       ChallengeAttempt attempt1 = new ChallengeAttempt(1L, user, 50, 60, 3010, false);

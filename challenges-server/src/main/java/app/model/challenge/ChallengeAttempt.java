@@ -11,8 +11,6 @@ import app.model.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 /**
  * Identifies the attempt from a {@link User} to solve a challenge.
