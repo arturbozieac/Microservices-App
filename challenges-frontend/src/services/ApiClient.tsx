@@ -2,6 +2,7 @@ class ApiClient {
   static SERVER_URL = 'http://localhost:8080';
   static GET_CHALLENGE = '/challenges/random';
   static POST_RESULT = '/attempts';
+  static GET_ATTEMPTS_BY_ALIAS = '/attempts?alias=';
 
   static challenge(): Promise<Response> {
     return fetch(`${ApiClient.SERVER_URL}${ApiClient.GET_CHALLENGE}`, {
@@ -24,6 +25,15 @@ class ApiClient {
         factorB: b,
         guess: guess,
       }),
+    });
+  }
+
+  static getAttempts(userAlias: string): Promise<Response> {
+    return fetch(`${ApiClient.SERVER_URL}${ApiClient.GET_ATTEMPTS_BY_ALIAS}${userAlias}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   }
 }

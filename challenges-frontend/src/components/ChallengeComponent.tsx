@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FormEvent } from "react";
 import ApiClient from "../services/ApiClient";
+import LastAttemptsComponent from './LastAttemptsComponent';
+import { ChallengeAttempt } from "./ChallengeAttempt";
 
 interface ChallengeState {
   a: number;
@@ -7,6 +9,7 @@ interface ChallengeState {
   user: string;
   message: string;
   guess: number;
+  lastAttempts: Array<ChallengeAttempt>;
 }
 
 class ChallengeComponent extends React.Component<{}, ChallengeState> {
@@ -18,6 +21,7 @@ class ChallengeComponent extends React.Component<{}, ChallengeState> {
       user: "",
       message: "",
       guess: 0,
+      lastAttempts: [],
     };
     this.handleSubmitResult = this.handleSubmitResult.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -63,9 +67,23 @@ class ChallengeComponent extends React.Component<{}, ChallengeState> {
               `Oops! Your guess ${json.resultAttempt} is wrong, but keep playing!`
             );
           }
+          this.updateLastAttempts(this.state.user);
+          // this.refreshChallenge(); 
         });
       } else {
         this.updateMessage("Error: server error or not available");
+      }
+    });
+  }
+
+  updateLastAttempts(userAlias: string): void {
+    ApiClient.getAttempts(userAlias).then((res: Response) => {
+      if (res.ok) {
+        res.json().then((data: ChallengeAttempt[]) => {
+          this.setState({
+            lastAttempts: data,
+          });
+        });
       }
     });
   }
@@ -78,12 +96,12 @@ class ChallengeComponent extends React.Component<{}, ChallengeState> {
 
   render(): JSX.Element {
     return (
-      <div>
+      <div className="display-column">
         <div>
           <h3>Your new challenge is</h3>
-          <h1>
+          <div className="challenge">
             {this.state.a} x {this.state.b}
-          </h1>
+          </div>
         </div>
         <form onSubmit={this.handleSubmitResult}>
           <label>
@@ -111,6 +129,9 @@ class ChallengeComponent extends React.Component<{}, ChallengeState> {
           <input type="submit" value="Submit" />
         </form>
         <h4>{this.state.message}</h4>
+        {this.state.lastAttempts.length > 0 &&
+          <LastAttemptsComponent lastAttempts={this.state.lastAttempts}/>
+ }
       </div>
     );
   }
