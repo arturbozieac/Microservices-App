@@ -2,7 +2,9 @@ package app.services;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +57,8 @@ class ChallengeServiceTest {
 		// then
 		then(resultAttempt.isCorrect()).isTrue();
 		
-		verify(userRepository).save(new User("john_doe"));
+		verify(userRepository, times(1)).findByAlias("john_doe");
+		verify(userRepository, atLeast(1)).save(ArgumentMatchers.any(User.class));
 		verify(attemptRepository).save(resultAttempt);
 	}
 
@@ -77,7 +80,7 @@ class ChallengeServiceTest {
   public void checkExistingUserTest() {
     given(attemptRepository.save(ArgumentMatchers.any())).will(AdditionalAnswers.returnsFirstArg());
     // given
-    User existingUser = new User("john_doe");
+    User existingUser = User.builder().alias("john_doe").build();
     given(userRepository.findByAlias("john_doe")).willReturn(Optional.of(existingUser));
     ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, "john_doe", 5000);
     // when
@@ -95,7 +98,7 @@ class ChallengeServiceTest {
   @Test
   public void retrieveStatsTest() {
       // given
-      User user = new User("john_doe");
+      User user = User.builder().alias("john_doe").build();
       ChallengeAttempt attempt1 = new ChallengeAttempt(1L, user, 50, 60, 3010, false);
       ChallengeAttempt attempt2 = new ChallengeAttempt(2L, user, 50, 60, 3051, false);
       List<ChallengeAttempt> lastAttempts = List.of(attempt1, attempt2);

@@ -29,7 +29,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     // Check if the user already exists for that alias, otherwise create it
     User user = userRepository.findByAlias(attemptDTO.getUserAlias()).orElseGet(() -> {
       log.info("Creating new user with alias {}", attemptDTO.getUserAlias());
-      return userRepository.save(new User(attemptDTO.getUserAlias()));
+      return userRepository.save(User.builder().alias(attemptDTO.getUserAlias()).build()); 
     });
     // Check if the attempt is correct
     boolean isCorrect = attemptDTO.getGuess() == attemptDTO.getFactorA() * attemptDTO.getFactorB();
@@ -37,8 +37,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     ChallengeAttempt checkedAttempt = new ChallengeAttempt(null, user, attemptDTO.getFactorA(),
         attemptDTO.getFactorB(), attemptDTO.getGuess(), isCorrect);
     // Stores the attempt
-    ChallengeAttempt storedAttempt = attemptRepository.save(checkedAttempt);
-    return storedAttempt;
+    return attemptRepository.save(checkedAttempt);
   }
   
   @Override

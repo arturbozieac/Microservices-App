@@ -17,10 +17,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -40,6 +39,7 @@ import app.services.interfaces.ChallengeService;
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
+@TestPropertySource("classpath:application-test.properties")
 class ChallengeAttemptControllerTest {
 
 	@MockBean
@@ -99,7 +99,7 @@ class ChallengeAttemptControllerTest {
 	@Test
   public void getUserStats() throws Exception {
       // given
-      User user = new User("john_doe");
+      User user = User.builder().alias("john_doe").build();
       ChallengeAttempt attempt1 = new ChallengeAttempt(1L, user, 50, 70, 3500, true);
       ChallengeAttempt attempt2 = new ChallengeAttempt(2L, user, 20, 10, 210, false);
       List<ChallengeAttempt> recentAttempts = List.of(attempt1, attempt2);
