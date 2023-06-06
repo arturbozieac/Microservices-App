@@ -7,6 +7,7 @@ interface Props {
 
 class LastAttemptsComponent extends React.Component<Props> {
   render() {
+    this.props.lastAttempts.map((a: ChallengeAttempt) => console.log(a))
     return (
       <table>
         <thead>
@@ -23,7 +24,7 @@ class LastAttemptsComponent extends React.Component<Props> {
               style={{ color: a.correct ? 'green' : 'red' }}
             >
               <td>{a.factorA} x {a.factorB}</td>
-              <td>{a.resultAttempt}</td>
+              <td>{a.attemptResult}</td>
               <td>{a.correct ? "Correct" : `Incorrect (${a.factorA * a.factorB})`}</td>
             </tr>
           ))}

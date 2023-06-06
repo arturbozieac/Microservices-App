@@ -2,6 +2,6 @@ export interface ChallengeAttempt {
     id: number;
     factorA: number;
     factorB: number;
-    resultAttempt: number;
+    attemptResult: number;
     correct: boolean;
   }
